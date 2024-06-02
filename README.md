@@ -6,7 +6,7 @@ The "Real Cost of No Cost EMI" is often misunderstood. Although marketed as zero
 
 This code snippet calculates the Equated Monthly Installment (EMI) for a loan or purchase, taking into account various discounts and fees. Here's a breakdown of each step and what it does:
 
-1. **Calculate Total Discounts:**
+ **Calculate Total Discounts:**
    ```javascript
    const totalDiscounts = couponDiscount + commonDiscount + nonEmiDiscount + emiPaymentDiscount + noCostEmiDiscount;
    ```
@@ -17,7 +17,7 @@ This code snippet calculates the Equated Monthly Installment (EMI) for a loan or
      - `emiPaymentDiscount`: Discount specifically for choosing the EMI payment method.
      - `noCostEmiDiscount`: Discount if opting for a no-cost EMI scheme.
 
-2. **Calculate Principal Amount:**
+ **Calculate Principal Amount:**
    ```javascript
    const principal = realCost - totalDiscounts + processingFees;
    ```
@@ -26,7 +26,7 @@ This code snippet calculates the Equated Monthly Installment (EMI) for a loan or
    - `totalDiscounts`: The total of all applicable discounts, calculated in the previous step.
    - `processingFees`: Additional fees charged for processing the EMI.
 
-3. **Calculate EMI:**
+ **Calculate EMI:**
    ```javascript
    const emi = principal / tenure;
    ```
@@ -34,7 +34,7 @@ This code snippet calculates the Equated Monthly Installment (EMI) for a loan or
    - `principal`: The net amount to be financed.
    - `tenure`: The number of months over which the loan will be repaid.
 
-4. **Display EMI:**
+ **Display EMI:**
    ```javascript
    document.getElementById('result').textContent = `Your EMI is ₹${emi.toFixed(2)} per month.`;
    ```
@@ -52,22 +52,22 @@ Let's assume the following values:
 - `processingFees = ₹100`
 - `tenure = 12 months`
 
-1. **Total Discounts:**
+#. **Total Discounts:**
    ```javascript
    totalDiscounts = 1000 + 500 + 200 + 300 + 0 = ₹2000
    ```
 
-2. **Principal:**
+#. **Principal:**
    ```javascript
    principal = 50000 - 2000 + 100 = ₹48100
    ```
 
-3. **EMI:**
+#. **EMI:**
    ```javascript
    emi = 48100 / 12 ≈ ₹4008.33
    ```
 
-4. **Displayed Result:**
+#. **Displayed Result:**
    The text content of the element with the ID `result` will be updated to:
    ```
    Your EMI is ₹4008.33 per month.
