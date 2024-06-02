@@ -10,7 +10,7 @@ This code snippet calculates the Equated Monthly Installment (EMI) for a loan or
    ```javascript
    const totalDiscounts = couponDiscount + commonDiscount + nonEmiDiscount + emiPaymentDiscount + noCostEmiDiscount;
    ```
-   - `totalDiscounts` is the sum of all the different discounts available. These can include:
+- `totalDiscounts` is the sum of all the different discounts available. These can include:
      - `couponDiscount`: Discount from a coupon.
      - `commonDiscount`: Any general discount.
      - `nonEmiDiscount`: Discount applicable if not opting for EMI.
