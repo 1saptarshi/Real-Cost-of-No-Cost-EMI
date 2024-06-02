@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Real Cost of No Cost EMI</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    .dark-mode {
+      background-color: #1a202c;
+      color: #a0aec0;
+    }
+    .dark-mode .bg-white {
+      background-color: #2d3748;
+    }
+    .dark-mode .text-gray-700 {
+      color: #cbd5e0;
+    }
+    .dark-mode .border-gray-300 {
+      border-color: #4a5568;
+    }
+    .dark-mode .bg-gray-100 {
+      background-color: #2d3748;
+    }
+    .dark-mode .text-blue-600 {
+      color: #63b3ed;
+    }
+  </style>
+</head>
+<body class="bg-gray-100 flex flex-col items-center justify-center h-screen">
+  <div class="flex mb-4">
+    <button id="toggle-form" class="mr-4 bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded">
+      <i class="fas fa-eye mr-2"></i>Show Calculator
+    </button>
+    <button id="toggle-theme" class="bg-purple-500 hover:bg-purple-600 text-white font-bold py-2 px-4 rounded">
+      <i class="fas fa-moon mr-2"></i>Dark Mode
+    </button>
+  </div>
+  <div id="calculator-container" class="bg-white p-8 rounded shadow-md w-full max-w-md hidden">
+    <h2 class="text-3xl font-bold mb-6 text-center text-blue-600"><i class="fas fa-calculator mr-2"></i>Real Cost of No Cost EMI</h2>
+    <form id="emi-form" class="space-y-4">
+      <div class="grid grid-cols-2 gap-4">
+        <div>
+          <label for="real-cost" class="block text-sm font-medium text-gray-700">Real Cost of No-Cost EMI Price(₹)</label>
+        </div>
+        <div>
+          <input type="number" id="real-cost" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" required>
+        </div>
+      </div>
+      <div class="grid grid-cols-2 gap-4">
+        <div>
+          <label for="coupon-discount" class="block text-sm font-medium text-gray-700">Coupon Discount(₹)</label>
+        </div>
+        <div>
+          <input type="number" id="coupon-discount" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
+        </div>
+      </div>
+      <div class="grid grid-cols-2 gap-4">
+        <div>
+          <label for="common-discount" class="block text-sm font-medium text-gray-700">Common Discount(₹)</label>
+        </div>
+        <div>
+          <input type="number" id="common-discount" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
+        </div>
+      </div>
+      <div class="grid grid-cols-2 gap-4">
+        <div>
+          <label for="non-emi-discount" class="block text-sm font-medium text-gray-700">Non-EMI Payment Discount(₹)</label>
+        </div>
+        <div>
+          <input type="number" id="non-emi-discount" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
+        </div>
+      </div>
+      <div class="grid grid-cols-2 gap-4">
+        <div>
+          <label for="emi-payment-discount" class="block text-sm font-medium text-gray-700">EMI Payment Discount(₹)</label>
+        </div>
+        <div>
+          <input type="number" id="emi-payment-discount" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
+        </div>
+      </div>
+      <div class="grid grid-cols-2 gap-4">
+        <div>
+          <label for="no-cost-emi-discount" class="block text-sm font-medium text-gray-700">No Cost EMI Discount(₹)</label>
+        </div>
+        <div>
+          <input type="number" id="no-cost-emi-discount" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
+        </div>
+      </div>
+      <div class="grid grid-cols-2 gap-4">
+        <div>
+          <label for="processing-fees" class="block text-sm font-medium text-gray-700">Processing Fees(₹)</label>
+        </div>
+        <div>
+          <input type="number" id="processing-fees" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
+        </div>
+      </div>
+      <div class="grid grid-cols-2 gap-4">
+        <div>
+          <label for="tenure" class="block text-sm font-medium text-gray-700">Tenure (months)</label>
+        </div>
+        <div>
+          <input type="number" id="tenure" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" required>
+        </div>
+      </div>
+      <div class="text-center">
+        <button type="submit" class="mt-4 bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded">
+          <i class="fas fa-calculator mr-2"></i>Calculate EMI
+        </button>
+        <button type="button" id="clear-form" class="mt-4 ml-2 bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-4 rounded">
+          <i class="fas fa-redo mr-2"></i>Clear
+        </button>
+      </div>
+    </form>
+    <div id="result" class="mt-6 text-center text-lg font-semibold text-gray-700"></div>
+  </div>
+
+  <script>
+    document.getElementById('toggle-form').addEventListener('click', function() {
+      const calculatorContainer = document.getElementById('calculator-container');
+      const toggleButton = document.getElementById('toggle-form');
+      if (calculatorContainer.classList.contains('hidden')) {
+        calculatorContainer.classList.remove('hidden');
+        toggleButton.innerHTML = '<i class="fas fa-eye-slash mr-2"></i>Hide Calculator';
+      } else {
+        calculatorContainer.classList.add('hidden');
+        toggleButton.innerHTML = '<i class="fas fa-eye mr-2"></i>Show Calculator';
+      }
+    });
+
+    document.getElementById('toggle-theme').addEventListener('click', function() {
+      const body = document.body;
+      const toggleButton = document.getElementById('toggle-theme');
+      if (body.classList.contains('dark-mode')) {
+        body.classList.remove('dark-mode');
+        toggleButton.innerHTML = '<i class="fas fa-moon mr-2"></i>Dark Mode';
+      } else {
+        body.classList.add('dark-mode');
+        toggleButton.innerHTML = '<i class="fas fa-sun mr-2"></i>Light Mode';
+      }
+    });
+
+    document.getElementById('emi-form').addEventListener('submit', function(e) {
+      e.preventDefault();
+      const realCost = parseFloat(document.getElementById('real-cost').value);
+      const couponDiscount = parseFloat(document.getElementById('coupon-discount').value) || 0;
+      const commonDiscount = parseFloat(document.getElementById('common-discount').value) || 0;
+      const nonEmiDiscount = parseFloat(document.getElementById('non-emi-discount').value) || 0;
+      const emiPaymentDiscount = parseFloat(document.getElementById('emi-payment-discount').value) || 0;
+      const noCostEmiDiscount = parseFloat(document.getElementById('no-cost-emi-discount').value) || 0;
+      const processingFees = parseFloat(document.getElementById('processing-fees').value) || 0;
+      const tenure = parseInt(document.getElementById('tenure').value);
+
+      if (isNaN(realCost) || isNaN(tenure) || realCost <= 0 || tenure <= 0) {
+        alert('Please enter valid values.');
+        return;
+      }
+
+      const totalDiscounts = couponDiscount + commonDiscount + nonEmiDiscount + emiPaymentDiscount + noCostEmiDiscount;
+      const principal = realCost - totalDiscounts + processingFees;
+      const emi = principal / tenure;
+
+      document.getElementById('result').textContent = `Your EMI is ₹${emi.toFixed(2)} per month.`;
+    });
+
+    document.getElementById('clear-form').addEventListener('click', function() {
+      document.getElementById('emi-form').reset();
+      document.getElementById('result').textContent = '';
+    });
+  </script>
+</body>
+</html>
